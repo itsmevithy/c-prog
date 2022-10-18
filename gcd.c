@@ -1,14 +1,12 @@
 #include <stdio.h>
 
 int main(){
-	int a, b, gcd=0, tempa, tempb;
+	int a, b, gcd=0;
 	printf("Enter number 1: ");
 	scanf("%d",&a);
-	printf("Enter number 2: ");
-	scanf("%d",&b);
-	tempa=a;
-	tempb=b;
-	while (gcd==0){
+	printf("Enter number 2: "); 
+	scanf("%d",&b );
+	while(gcd==0){
 		if (a==b){
 			gcd=a;
 		}
@@ -29,6 +27,5 @@ int main(){
 			break;
 		}
 	}
-	printf("The GCD of %d and %d is %d\n", tempa, tempb, gcd);
-
+	printf("GCD of the two nos is %d\n", gcd);
 }
