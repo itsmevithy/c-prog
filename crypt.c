@@ -1,38 +1,53 @@
 #include<stdio.h>
 #include<string.h>
-void swapint(int a, int b);
-void swapstr(char a[100], char b[100]);
+
+char strrev(char str[10]){
+    int i = strlen(str) - 1, j = 0;
+    char ch;
+    while (i > j)
+    {
+        ch = str[i];
+        str[i] = str[j];
+        str[j] = ch;
+        i--;
+        j++;
+    }
+}
+
 void main(){
-	char code[5][100]={"a2"," mf4", "stupid3", "hes1"}, txt[5][100];
+	int x;
+	printf("Enter number of strings: ");
+	scanf("%d", &x);
+	char code[x][100], temp[100];
 	int num[5], i, j, a, c;
+
+	printf("Note: ENTER CHARACTER WITHOUT NUMBERS TO STOP READING\n");
+
+	for (i=0;(i<x)&&(code[i]!=""); i++) scanf("%s", code[i]);
+
+	for (i=0; i<x; i++) printf("%s ", code[i]);
+
+	for (i=0; i<x; i++) strrev(code[i]);
+
+	for (i=0; i<(x-1); i++){
+		for (j=0; j<(x-i-2); j++){
+			if (code[j][0]>code[j+1][0]){
+				strcpy(temp, code[j]);
+				strcpy(code[j], code[j+1]);
+				strcpy(code[j+1], temp);
+			}
+		}
+	}
+
+	for (i=0; i<5; i++) strrev(code[i]);
+				
 	for(i=0; i<5; i++){
 		for(j=0; j<10; j++){
-			strassn(txt[i][j], code[i][j]);
 			if (code[i][j]=='\0'){
-				num[i]=code[j-1];
-				txt[i][j-1]='\0';}
+				code[i][j-1]='\0';}
 		}
 	}
-	for(i=0; i<4; i++){
-		for(j=0 ; j<(4-i-1); j++ ){
-			if (num[j]>num[j+1])
-				swapint(num[j], num[j+1]);
-				swapstr(txt[j], txt[j+1]);
-		}
-	}
-	for(i=0; i<5; i++) puts(txt[i]);
+
+	for(i=0; i<5; i++) printf("%s ",code[i]);
 }
 
-void swapint(int a, int b){
-	int temp;
-	temp=a;
-	a=b;
-	b=temp;
-}
-
-void swapstr(char a[100], char b[100]){
-	char temp[100];
-	strcpy(temp, a);
-	strcpy(a, b);
-	strcpy(b, temp);
-}
